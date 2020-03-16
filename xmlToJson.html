@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML to json</title>
+    <script src="src/js/xmlToJson.min.js"></script>
+</head>
+
+<body>
+
+    <script>
+        //待转换的xml字符串
+        const xmlText = `
+            <userInfo version="1.0.0">
+                <token>12366666666</token>
+                <isAdmin>true</isAdmin>
+                <account>admin</account>
+                <userName>管理员</userName>
+                <id>12345678</id>
+                <mobile>13928281818</mobile>
+                <alias>猛追湾彭于晏</alias>
+                <roles>
+                    <role id="123456" name="超级管理员"></role>
+                    <role id="12345" name="管理员"></role>
+                </roles>
+                <orgs>
+                    <org id="123456" name="四川移动"></org>
+                    <org id="12345" name="成都移动分公司"></org>
+                </orgs>
+            </userInfo>
+        `;
+
+        let jsonData = XmlToJson.parse(xmlText, {
+            textKey: 'value',
+            conversionkeyMap: {
+                userInfo: 'userData',
+                roles: 'userRoles'
+            }
+        });
+    
+        console.log(jsonData);
+    </script>
+
+</body>
+
+</html>
